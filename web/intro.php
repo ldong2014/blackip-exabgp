@@ -8,7 +8,10 @@ include "top.php";
 将DDoS流量引流到一台Linux服务器，流量经过Linux服务器过滤后再送给下游路由器，<br>
 从而完成DDoS流量清洗工作。<p>
 
-部分资料请见<a href=https://github.com/bg6cq/ITTS/blob/master/security/bgp/exabgp/README.md target=_blank>https://github.com/bg6cq/ITTS/blob/master/security/bgp/exabgp/README.md</a><p>
+相关资料：<br>
+<a href=https://github.com/Exa-Networks/exabgp target=_blank>https://github.com/Exa-Networks/exabgp</a><br>
+<a href=https://github.com/bg6cq/blackip-exabgp target=_blank>https://github.com/bg6cq/blackip-exabgp</a><br>
+<a href=https://github.com/bg6cq/ITTS/blob/master/security/bgp/exabgp/README.md target=_blank>https://github.com/bg6cq/ITTS/blob/master/security/bgp/exabgp/README.md</a><p>
 
 下图是工作原理示意:<p>
-<img src=DDoS.png>
+<img src=DDoS.png width=800>
