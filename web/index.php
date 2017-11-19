@@ -80,12 +80,12 @@ if(0) {
 $q="select count(*) from blackip where status='added'";
 $result = $mysqli->query($q);
 $r=$result->fetch_array();
-echo "activing routes: ".$r[0].", ";
+echo "生效的路由: ".$r[0].", ";
 
 $q="select count(*) from blackip where status='adding' or status='deleting'";
 $result = $mysqli->query($q);
 $r=$result->fetch_array();
-echo "updating routes: ".$r[0]." ";
+echo "更新中路由: ".$r[0]." ";
 
 if( isset($_SESSION["isadmin"]) && ($_SESSION["isadmin"]==1))  {
 	if(isset($_REQUEST["add"])) { // add

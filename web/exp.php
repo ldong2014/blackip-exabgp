@@ -14,7 +14,7 @@ if( isset($_SESSION["isadmin"]) && ($_SESSION["isadmin"]==1))  {
 $q="select count(*) from blackip where status='deleted'";
 $result = $mysqli->query($q);
 $r=$result->fetch_array();
-echo "deactived routes: ".$r[0]."<p>";
+echo "撤回的路由: ".$r[0]."<p>";
 
 @$s=$_REQUEST["s"];
 $q="select id,prefix,len,next_hop,other,start,end,msg from blackip where status='deleted' order by inet_aton(prefix)".$limit;

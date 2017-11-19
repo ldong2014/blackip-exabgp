@@ -6,8 +6,9 @@
 
 <body bgcolor=#dddddd>
 <a href=/ target=_blank>流量</a> 
-<a href=index.php>Activing Routes</a> 
-<a href=exp.php>Deactived Routes</a> 
+<a href=index.php>生效的路由</a> 
+<a href=exp.php>撤回的路由</a> 
+<a href=intro.php>介绍</a> 
 
 <?php
 
@@ -31,7 +32,7 @@ if ( isset($_SESSION["isadmin"]) && $_SESSION["isadmin"]) {
 }  
 ?>
 
-Contact: james@ustc.edu.cn  
+技术支持: james@ustc.edu.cn  
 
 <?php 
 
@@ -46,8 +47,8 @@ $q="select TIMESTAMPDIFF(second, now(), tm) from lastrun";
 $result = $mysqli->query($q);
 $r=$result->fetch_array();
 if($r[0]<=2)
-        echo " <font color=green>ExaBGP running</font>";
-else echo " <font color=red>ExaBGP stoped</font>";
+        echo " <font color=green>ExaBGP运行正常</font>";
+else echo " <font color=red>ExaBGP未运行</font>";
 
 ?>
 <hr>
