@@ -33,8 +33,22 @@ CREATE TABLE `blackip` (
   `end` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `msg` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
-  KEY `status` (`status`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  KEY `status` (`status`),
+  KEY `pl` (`prefix`,`len`),
+  KEY `e` (`end`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `lastrun`
+--
+
+DROP TABLE IF EXISTS `lastrun`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lastrun` (
+  `tm` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -46,4 +60,4 @@ CREATE TABLE `blackip` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-18 20:53:59
+-- Dump completed on 2017-11-19  8:38:20

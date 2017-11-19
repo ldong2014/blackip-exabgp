@@ -1,10 +1,5 @@
 #!/bin/bash
 
-while true; do
-	date >> exabgp.log
-	echo "starting" >> exabgp.log
-	/usr/src/exabgp/sbin/exabgp /etc/exabgp/exabgp.conf
-	echo "exitd!" >> exabgp.log
-	echo  >> exabgp.log
-	sleep 10;
-done
+env exabgp.daemon.user=root exabgp.daemon.daemonize=true exabgp.daemon.pid=/var/run/exabgp.pid \
+	exabgp.log.destination=/var/log/exabgp.log /usr/src/exabgp/sbin/exabgp /etc/exabgp.conf
+

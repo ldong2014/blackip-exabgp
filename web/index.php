@@ -5,6 +5,7 @@ include "top.php";
 $routerip="210.45.230.89";
 
 $limit=" limit 10 ";
+
 if( isset($_SESSION["isadmin"]) && ($_SESSION["isadmin"]==1))  {
 	if(isMobile())
 		$limit=" limit 100 ";
@@ -77,10 +78,17 @@ if(0) {
 }
 
 echo "<table><tr><td>";
+$q="select TIMESTAMPDIFF(second, now(), tm) from lastrun";
+$result = $mysqli->query($q);
+$r=$result->fetch_array();
+if($r[0]<=2)
+	echo "ExaBGP <font color=green>running</font>, ";
+else echo "ExaBGP <font color=red>not running</font>, ";
+
 $q="select count(*) from blackip where status='added'";
 $result = $mysqli->query($q);
 $r=$result->fetch_array();
-echo "activing routes ".$r[0]."</td>";
+echo "activing routes: ".$r[0]."</td>";
 ?>
 </td>
 <?php
