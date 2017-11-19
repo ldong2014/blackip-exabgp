@@ -31,7 +31,7 @@ if ( isset($_SESSION["isadmin"]) && $_SESSION["isadmin"]) {
 }  
 ?>
 
-ExaBGP WEB, Contact:james@ustc.edu.cn  
+Contact: james@ustc.edu.cn  
 
 <?php 
 
@@ -40,6 +40,14 @@ echo "您的IP地址:";
 if (!empty($_SERVER['HTTP_X_REAL_IP'])) echo $_SERVER['HTTP_X_REAL_IP'];
 else 
 echo  $_SERVER["REMOTE_ADDR"];
+
+echo " ";
+$q="select TIMESTAMPDIFF(second, now(), tm) from lastrun";
+$result = $mysqli->query($q);
+$r=$result->fetch_array();
+if($r[0]<=2)
+        echo " <font color=green>ExaBGP running</font>";
+else echo " <font color=red>ExaBGP stoped</font>";
 
 ?>
 <hr>

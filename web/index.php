@@ -77,26 +77,20 @@ if(0) {
         }
 }
 
-echo "<table><tr><td>";
-$q="select TIMESTAMPDIFF(second, now(), tm) from lastrun";
-$result = $mysqli->query($q);
-$r=$result->fetch_array();
-if($r[0]<=2)
-	echo "ExaBGP <font color=green>running</font>, ";
-else echo "ExaBGP <font color=red>not running</font>, ";
-
 $q="select count(*) from blackip where status='added'";
 $result = $mysqli->query($q);
 $r=$result->fetch_array();
-echo "activing routes: ".$r[0]."</td>";
-?>
-</td>
-<?php
+echo "activing routes: ".$r[0].", ";
+
+$q="select count(*) from blackip where status='adding' or status='deleting'";
+$result = $mysqli->query($q);
+$r=$result->fetch_array();
+echo "updating routes: ".$r[0]." ";
+
 if( isset($_SESSION["isadmin"]) && ($_SESSION["isadmin"]==1))  {
 	if(isset($_REQUEST["add"])) { // add
-		echo "</tr></table>";
 ?>
-
+<p>
 <form action=index.php>
 增加路由: <br>
 前缀:<input name=prefix><br>
@@ -107,18 +101,14 @@ next_hop:<input name=next_hop value="<?php echo $routerip;?>"></input><br>
 消息: <input name=msg><br>
 <input type=submit name=add_do value="添加">
 </form>
-
 <?php
 	}
 	else {
-		echo "<td>";
 		echo "<a href=index.php?add>add</a>";
-		echo "</td>";
-		echo "</tr></table>";
 	}
-} else
-		echo "</tr></table>";
+} 
 
+echo "<p>";
 @$s=$_REQUEST["s"];
 $q="select id,prefix,len,next_hop,other,start,end,msg from blackip where status='added' order by inet_aton(prefix)".$limit;
 if($s=="s")
