@@ -5,19 +5,21 @@ $db_user = "root";
 $db_passwd = "";
 $db_dbname = "blackip";
 
+$next_hop="210.45.230.117";
+
 $mysqli = new mysqli($db_host, $db_user, $db_passwd, $db_dbname);
 if(mysqli_connect_error()){
         echo mysqli_connect_error();
 }
 
 // 开始运行，先把处于added状态的路由发送出去
-$q="select id,prefix,len,next_hop,other from blackip where status='added'";
+$q="select id,prefix,len from blackip where status='added'";
 $stmt=$mysqli->prepare($q);
 $stmt->execute();
 $stmt->store_result();
-$stmt->bind_result($id,$prefix,$len,$next_hop,$other);
+$stmt->bind_result($id,$prefix,$len);
 while($stmt->fetch()){
-	echo "announce route $prefix/$len next-hop $next_hop $other\n";
+	echo "announce route $prefix/$len next-hop $next_hop\n";
 }
 $stmt->close();
 
@@ -63,13 +65,13 @@ while(1) {
 	$stmt->close();
 
 	// 处理新增路由
-	$q="select id,prefix,len,next_hop,other from blackip where status='adding'";
+	$q="select id,prefix,len from blackip where status='adding'";
 	$stmt=$mysqli->prepare($q);
 	$stmt->execute();
 	$stmt->store_result();
-	$stmt->bind_result($id,$prefix,$len,$next_hop,$other);
+	$stmt->bind_result($id,$prefix,$len);
 	while($stmt->fetch()){
-		echo "announce route $prefix/$len next-hop $next_hop $other\n";
+		echo "announce route $prefix/$len next-hop $next_hop\n";
                 $q="update blackip set status='added' where id=?";
 		$stmt2=$mysqli->prepare($q);
 		$stmt2->bind_param("s",$id);
