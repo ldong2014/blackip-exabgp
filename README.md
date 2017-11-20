@@ -7,3 +7,7 @@
 blackip-exbgp.php 程序轮询数据库，如果有需要删除的，发送withdraw命令；如果有新增的，发送announce route命令。
 
 web目录为简单的管理界面，其中login.php是登录程序，简单修改即可使用。
+
+参考资料：
+
+[使用ExaBGP发送BGP路由信息和清洗DDoS流量](https://github.com/bg6cq/ITTS/blob/master/security/bgp/exabgp/README.md)
