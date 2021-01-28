@@ -14,6 +14,8 @@ centos6中process中做php backlist-exabgp.php汇报 EEROR socket错误。
 
 
  nohup php -f /usr/src/blackip-exabgp/blackip-exabgp.php > /var/run/exabgp.cmd 2>&1  &
+ 
+ nohup执行后要立即exit退出终端，否则会导致程序终端退出。
 
 参考资料：
 
